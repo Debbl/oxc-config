@@ -96,6 +96,13 @@ export function oxlint(options: OxlintOptions = {}): OxlintConfig {
       suspicious: 'warn',
     },
     rules: {
+      // None of these were part of `@debbl/eslint-config`, and each fires on
+      // something legitimate: framework globals (`__SW_MANIFEST`,
+      // `__NEXT_PRIVATE_ORIGIN`), side-effect imports (`import './x.css'`),
+      // and shadowing that reads fine in callbacks.
+      'eslint/no-shadow': 'off',
+      'eslint/no-underscore-dangle': 'off',
+      'import/no-unassigned-import': 'off',
       ...(react
         ? {
             // React 17+ automatic JSX runtime: no `React` in scope needed.
