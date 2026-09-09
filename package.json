@@ -1,0 +1,71 @@
+{
+  "name": "@debbl/oxc-config",
+  "version": "0.0.0",
+  "description": "Brendan Dash's shared oxlint and oxfmt config",
+  "keywords": [
+    "config",
+    "format",
+    "lint",
+    "oxc",
+    "oxfmt",
+    "oxlint"
+  ],
+  "homepage": "https://github.com/Debbl/oxc-config#readme",
+  "bugs": "https://github.com/Debbl/oxc-config/issues",
+  "license": "MIT",
+  "author": "Brendan Dash <me@aiwan.run> (https://aiwan.run)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Debbl/oxc-config.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@types/node": "^26.5.0",
+    "bumpp": "^12.2.1",
+    "lint-staged": "^17.5.0",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
+    "simple-git-hooks": "^2.14.0",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2"
+  },
+  "peerDependencies": {
+    "oxfmt": ">=0.67.0",
+    "oxlint": ">=1.82.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}": [
+      "oxlint --fix",
+      "oxfmt"
+    ],
+    "*.{json,jsonc,css,scss,html,md,mdx}": [
+      "oxfmt"
+    ]
+  },
+  "packageManager": "pnpm@12.3.4"
+}
