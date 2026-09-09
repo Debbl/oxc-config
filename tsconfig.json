@@ -12,8 +12,7 @@
     "strict": true,
     "erasableSyntaxOnly": true,
     "strictNullChecks": true,
-    "outDir": "./dist",
-    "sourceMap": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
