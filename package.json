@@ -1,6 +1,6 @@
 {
   "name": "@debbl/oxc-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Brendan Dash's shared oxlint and oxfmt config",
   "keywords": [
     "config",
