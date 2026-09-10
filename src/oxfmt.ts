@@ -1,5 +1,5 @@
 import { defineConfig } from 'oxfmt'
-import type { GlobSet, OxfmtConfig } from 'oxfmt'
+import type { GlobSet, OxfmtConfig, SortImportsConfig } from 'oxfmt'
 
 export interface OxfmtOptions {
   /**
@@ -24,6 +24,30 @@ export interface OxfmtOptions {
    * @default {}
    */
   overrides?: OxfmtConfig
+}
+
+/**
+ * Import group order, ported from the `perfectionist/sort-imports` options the
+ * ESLint config used, so switching a repo over does not reshuffle every file.
+ *
+ * Note the naming differs from perfectionist: oxfmt spells modifiers with
+ * underscores (`side_effect`, not `side-effect`) and has no
+ * `ts-equals-import` group.
+ */
+const sortImports: SortImportsConfig = {
+  groups: [
+    'value-builtin',
+    'value-external',
+    'value-internal',
+    ['value-parent', 'value-sibling', 'value-index'],
+    ['side_effect_style', 'side_effect'],
+    'type-import',
+    ['type-parent', 'type-sibling', 'type-index', 'type-internal'],
+    'unknown',
+  ],
+  // perfectionist ran with `newlinesBetween: 'ignore'`; oxfmt defaults to
+  // inserting a blank line between groups, which rewrites every import block.
+  newlinesBetween: false,
 }
 
 /**
@@ -53,7 +77,7 @@ export function oxfmt(options: OxfmtOptions = {}): OxfmtConfig {
     // every one of these repos is already wrapped at - leaving it at 100
     // reflows the whole codebase on the first run.
     printWidth: 80,
-    sortImports: true,
+    sortImports,
     ...(tailwind
       ? {
           sortTailwindcss:
@@ -69,5 +93,5 @@ export function oxfmt(options: OxfmtOptions = {}): OxfmtConfig {
       ...ignorePatterns,
     ],
     ...overrides,
-  } satisfies OxfmtConfig)
+  })
 }
