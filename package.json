@@ -33,8 +33,12 @@
   },
   "scripts": {
     "build": "tsdown",
+    "inspect": "oxlint-config-inspector",
+    "inspect:build": "node scripts/build-inspector.ts",
+    "inspect:preview": "wrangler dev",
+    "inspect:deploy": "nr inspect:build && wrangler deploy",
     "typecheck": "tsc --noEmit",
-    "test": "echo 'TODO'",
+    "test": "vitest run",
     "release": "bumpp",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
@@ -48,9 +52,13 @@
     "lint-staged": "^17.5.0",
     "oxfmt": "^0.67.0",
     "oxlint": "^1.82.0",
+    "oxlint-config-inspector": "^1.1.1",
+    "oxlint-tsgolint": "^7.0.2001",
     "simple-git-hooks": "^2.14.0",
     "tsdown": "^0.23.0",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0",
+    "wrangler": "^4.130.0"
   },
   "peerDependencies": {
     "oxfmt": ">=0.67.0",

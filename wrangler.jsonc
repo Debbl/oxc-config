@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "oxc-config-inspector",
+  "compatibility_date": "2026-09-11",
+  "assets": {
+    "directory": "./.inspector",
+    // The inspector navigates with query params and the hash, never deep
+    // paths, so directory indexes are all the routing it needs - no
+    // single-page-application fallback.
+    "html_handling": "auto-trailing-slash",
+  },
+}

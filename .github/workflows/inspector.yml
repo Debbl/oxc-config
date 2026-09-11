@@ -1,0 +1,56 @@
+name: Inspector
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+# One deploy at a time; a newer push supersedes an in-flight one.
+concurrency:
+  group: inspector
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set node
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v5
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Install
+        run: nci
+
+      - name: Build inspector
+        run: nr inspect:build
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
