@@ -42,9 +42,6 @@ const sortImports: SortImportsConfig = {
     ['value-parent', 'value-sibling', 'value-index'],
     ['side_effect_style', 'side_effect'],
     'type-import',
-    {
-      newlinesBetween: true,
-    },
     ['type-parent', 'type-sibling', 'type-index', 'type-internal'],
     'unknown',
   ],

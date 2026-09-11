@@ -5,7 +5,6 @@ import { helper } from '../helper'
 import { local } from './local'
 import './styles.css'
 import type { ReactNode } from 'react'
-
 import type { Helper } from '../helper'
 import type { Route } from './routes'
 
