@@ -1,6 +1,5 @@
 import { expect, it } from 'vitest'
 import { resolve } from './utils.ts'
-
 import type { OxlintOptions } from '~/index.ts'
 
 /**

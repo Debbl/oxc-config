@@ -12,7 +12,6 @@ import { join, relative } from 'node:path'
 import { afterAll, describe, expect, it } from 'vitest'
 import { oxfmt, oxlint } from '~/index.ts'
 import { OXFMT_BIN, OXLINT_BIN, writeConfig } from './utils.ts'
-
 import type { OxfmtOptions, OxlintOptions } from '~/index.ts'
 
 const ROOT = join(import.meta.dirname, '..')

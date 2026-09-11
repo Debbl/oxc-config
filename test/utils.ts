@@ -3,7 +3,6 @@ import { cpSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { isAbsolute, join, relative, sep } from 'node:path'
 import { oxlint } from '~/index.ts'
-
 import type { OxlintOptions } from '~/index.ts'
 
 const BIN = join(import.meta.dirname, '..', 'node_modules', '.bin')

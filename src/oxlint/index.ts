@@ -13,7 +13,6 @@ import { typeAwareRules, typescriptRules } from './typescript.ts'
 import { unicornRules } from './unicorn.ts'
 import { TEST_FILES, testRules } from './vitest.ts'
 import type { OxlintConfig } from 'oxlint'
-
 import type { LintPlugins, OxlintOptions } from './types.ts'
 
 export type { OxlintOptions } from './types.ts'
