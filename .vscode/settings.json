@@ -1,0 +1,18 @@
+{
+  // Let oxc own both jobs.
+  "prettier.enable": false,
+  "eslint.enable": false,
+
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  // Formatting and lint fixes both run as code actions, so the order is
+  // explicit: format first, then apply fixes to the formatted text.
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.format.oxc": "always",
+    "source.fixAll.oxc": "always"
+  },
+
+  // `fixtures/` and `test/cases/` are deliberately broken; the configs ignore
+  // them, and `oxc.requireConfig` keeps the server from linting them anyway.
+  "oxc.requireConfig": true
+}
